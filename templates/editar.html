@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlick+ | Editar Producto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 600px;">
+        <header>
+            <div class="brand">StockFlick+</div>
+            <a href="/" style="text-decoration: none; color: var(--text);">← Cancelar</a>
+        </header>
+
+        <h2>Editar Producto: {{ producto.nombre }}</h2>
+        
+        <form action="/editar/{{ producto.codigo }}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <label>Código:</label><br>
+                <input type="number" name="codigo" value="{{ producto.codigo }}" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Nombre:</label><br>
+                <input type="text" name="nombre" value="{{ producto.nombre }}" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Precio ($):</label><br>
+                <input type="number" step="0.01" name="precio" value="{{ producto.precio }}" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Stock Actual:</label><br>
+                <input type="number" name="stock" value="{{ producto.stock }}" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Descripción:</label><br>
+                <textarea name="descripcion" rows="3" style="width: 100%; padding: 8px;">{{ producto.descripcion }}</textarea>
+            </div>
+            
+            <button type="submit" class="btn-nuevo" style="border: none; cursor: pointer; background-color: var(--accent);">Actualizar Cambios</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlick+ | Inventario</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">StockFlick+</div>
+            <nav>
+                <a href="/" style="margin-right: 20px; text-decoration: none; color: var(--text);">Inventario</a>
+                <a href="/agregar" class="btn-nuevo">+ Nuevo Producto</a>
+            </nav>
+        </header>
+
+        <h1>Inventario General</h1>
+        <p>Gestione y monitoree el stock de sus productos de forma profesional.</p>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px;">
+    
+    <div style="flex-grow: 1; position: relative;">
+        <input type="text" id="busqueda" 
+               placeholder="🔍 Buscar por código, nombre o descripción..." 
+               onkeyup="filtrarTabla()"
+               style="width: 100%; padding: 10px 15px; border: 1px solid var(--border); border-radius: 8px; outline: none;">
+    </div>
+
+    <a href="/exportar" 
+       style="background-color: white; border: 1px solid var(--border); color: var(--primary); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+       📥 Exportar JSON
+    </a>
+</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th style="text-align: center;">Acciones</th> </tr>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td><strong>{{ p.codigo }}</strong></td>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.descripcion }}</td>
+                    <td>${{ p.precio }}</td>
+                    <td>{{ p.stock }}</td>
+                    <td>
+                        {% if p.stock > 10 %}
+                            <span class="badge badge-optimo">Óptimo</span>
+                        {% elif p.stock > 0 %}
+                            <span class="badge badge-bajo">Bajo</span>
+                        {% else %}
+                            <span class="badge badge-agotado">Agotado</span>
+                        {% endif %}
+                    </td>
+                   <td style="text-align: center;">
+    <a href="/editar/{{ p.codigo }}" 
+       style="color: var(--accent); text-decoration: none; margin-right: 15px; font-weight: 600;">
+       ✏️ Editar
+    </a>
+
+    <a href="/eliminar/{{ p.codigo }}" 
+       onclick="return confirm('¿Seguro que deseas eliminar este producto?')" 
+       class="btn-eliminar">
+       🗑️ Eliminar
+    </a>
+</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+function filtrarTabla() {
+    // 1. Obtenemos lo que el usuario escribió
+    let input = document.getElementById("busqueda").value.toLowerCase();
+    // 2. Seleccionamos todas las filas del cuerpo de la tabla
+    let filas = document.querySelectorAll("tbody tr");
+
+    filas.forEach(fila => {
+        // 3. Obtenemos todo el texto de la fila (nombre, código, etc.)
+        let textoFila = fila.innerText.toLowerCase();
+        
+        // 4. Si el texto coincide, mostramos la fila, si no, la ocultamos
+        if (textoFila.includes(input)) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+    });
+}
+</script>
+</body>
+</html>

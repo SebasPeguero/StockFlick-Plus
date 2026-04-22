@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlick+ | Nuevo Producto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 600px;">
+        <header>
+            <div class="brand">StockFlick+</div>
+            <a href="/" style="text-decoration: none; color: var(--text);">← Volver</a>
+        </header>
+
+        <h2>Registrar Nuevo Producto</h2>
+        
+        <form action="/agregar" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <label>Código:</label><br>
+                <input type="number" name="codigo" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Nombre:</label><br>
+                <input type="text" name="nombre" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Precio:</label><br>
+                <input type="number" step="0.01" name="precio" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Stock Inicial:</label><br>
+                <input type="number" name="stock" required style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+                <label>Descripción:</label><br>
+                <textarea name="descripcion" rows="3" style="width: 100%; padding: 8px;"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-nuevo" style="border: none; cursor: pointer;">Guardar Producto</button>
+        </form>
+    </div>
+</body>
+</html>

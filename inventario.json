@@ -1,0 +1,23 @@
+[
+    {
+        "codigo": 101,
+        "nombre": "Monitor ASUS TUF 27\"",
+        "precio": 350.0,
+        "stock": 15,
+        "descripcion": "Monitor Gaming 165Hz con tecnolog\u00eda G-Sync."
+    },
+    {
+        "codigo": 102,
+        "nombre": "Teclado Mec\u00e1nico RGB",
+        "precio": 85.5,
+        "stock": 4,
+        "descripcion": "Switches Red, formato 60% para mayor espacio."
+    },
+    {
+        "codigo": 103,
+        "nombre": "Mouse Inal\u00e1mbrico Pro",
+        "precio": 60.0,
+        "stock": 5,
+        "descripcion": "Sensor \u00f3ptico de alta precisi\u00f3n, bater\u00eda de 80h."
+    }
+]
